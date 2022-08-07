@@ -100,4 +100,3 @@ function sendMsg(){
     return false;
 }
 
-console.log('testing....')

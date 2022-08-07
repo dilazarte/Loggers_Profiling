@@ -68,7 +68,7 @@ function startServer(){
             mongoUrl:`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@${process.env.MONGO_CLUSTER}/sesiones?retryWrites=true&w=majority`,
             ongoOptions: mongoOptions
         }),
-        cookie: {maxAge: 120000},
+        cookie: {maxAge: 600000},
         secret:"sesionSecreta123",
         resave:true,
         saveUninitialized:true,
@@ -97,7 +97,7 @@ function startServer(){
     //ruta info!
     app.get('/info', (req, res) => {
         //loggerInfo.info(infoSys)
-        res.json(infoSys)
+        res.send(infoSys)
     })
     app.get('/infobloq', (req, res) => {
         //loggerInfo.info(infoSys)
@@ -118,7 +118,7 @@ function startServer(){
     const io = new IOServer(httpServer);
 
     io.on('connection', (socket) => {
-        console.log(`Usuario conectado ${socket.id} - ${socket.handshake.address}`);
+        loggerInfo.info(`Usuario conectado ${socket.id} - ${socket.handshake.address}`);
         
         socket.emit('msg', '')
         socket.on('newMsg', ()=>{

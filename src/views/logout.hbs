@@ -1,5 +1,11 @@
-<div class="container">
-    <h1 class="text-center">Hasta luego {{name}} {{lastName}}</h1>
+<div class="container pt-5">
+    {{#if session}}
+        <h1 class="text-center">Hasta luego {{name}} {{lastName}}</h1>
+    {{else}}
+        <h1 class="text-center">Ningun usuario con sesion activa</h1>
+    {{/if}}
+    
+    
 </div>
 <script>
     setTimeout(()=>{

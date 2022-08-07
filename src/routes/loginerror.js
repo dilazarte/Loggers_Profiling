@@ -1,10 +1,9 @@
 const express = require('express')
 const {Router} = express
+const {getLoginError} = require('../controllers/viewsControllers')
 
 const loginError = Router()
 
-loginError.get('/', (req, res)=>{
-    res.render('loginError')
-})
+loginError.get('/', getLoginError)
 
 module.exports= loginError

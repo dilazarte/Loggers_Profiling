@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const {loggerInfo, loggerDebug, loggerError} = require('../utils/loggers')
 require('dotenv').config();
 
 const URL = process.env.MONGO_URI;
@@ -9,7 +10,7 @@ class ContenedorMongoDB {
         mongoose.connect(URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true
-        }, ()=> console.log('Connected to db'));
+        }, ()=> loggerInfo.info('Connected to db'));
         this.model = model
     }
 
@@ -19,7 +20,7 @@ class ContenedorMongoDB {
             if(item.length > 0){
                 return item
             } else{
-                return '[]'
+                return []
             }
         } catch (error) {
             return error
@@ -32,7 +33,7 @@ class ContenedorMongoDB {
             if(item.length > 0){
                 return item
             } else{
-                return '[]'
+                return []
             }
         } catch (error) {
             return error
@@ -45,7 +46,7 @@ class ContenedorMongoDB {
             if(items.length > 0){
                 return items;
             } else{
-                return `Error: no se encontraron documentos`
+                return []
             }
         } catch (error) {
             return error

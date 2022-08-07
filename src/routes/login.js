@@ -1,24 +1,13 @@
 const express = require('express')
 const passport = require('passport');
 const {Router} = express
+const {getLogin, postLogin} = require('../controllers/viewsControllers')
 
 const loginRouter = Router()
 
 
-loginRouter.get('/', (req, res)=>{
-    if(req.isAuthenticated()){
-        res.redirect('admin')
-    }else{
-        res.render('login')
-    }
-})
+loginRouter.get('/', getLogin)
 
-loginRouter.post('/', passport.authenticate('login', {failureRedirect: '/loginError'}), (req, res)=>{
-    if (req.isAuthenticated()) {
-        res.redirect('/admin')
-    } else {
-        res.redirect('/login')
-    }
-})
+loginRouter.post('/', passport.authenticate('login', {failureRedirect: '/loginError'}), postLogin)
 
 module.exports= loginRouter

@@ -16,7 +16,6 @@ process.on("message", msg => {
     }
     else{
         let num = getRandomNumObj(msg)
-        //process.send(getRandomNumObj(msg))
         process.send({pid: process.pid, randoms: num})
     }
 });

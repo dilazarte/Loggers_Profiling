@@ -1,20 +1,11 @@
 const express = require('express')
 const {Router} = express
-const { fork } = require('child_process');
+
+const {getRandomsNums} = require('../controllers/viewsControllers')
 
 
 const randomsNum = Router()
 
-randomsNum.get('/', (req, res) => {
-    let num = parseInt(req.query.cant) || 100000000;
-    const forked = fork('src/utils/randomsNum.js');
-
-    forked.send(num);
-    forked.on('message', data => {
-        res.json(data)
-        forked.send('exit')
-    })
-    
-})
+randomsNum.get('/', getRandomsNums)
 
 module.exports= randomsNum
